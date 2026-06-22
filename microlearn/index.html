@@ -166,6 +166,10 @@
   .role .vb{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--spring);padding-top:3px;letter-spacing:.04em}
   .role .tx{font-size:15.5px;color:var(--text)}
 
+  .learnings{list-style:none;padding:0;margin:30px 0 0;display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .learnings li{background:var(--panel);padding:22px;font-size:15.5px;color:var(--text);line-height:1.6}
+  .learnings strong{color:var(--spring);font-weight:600}
+
   .team{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
   .person{border:1px solid var(--line-strong);border-radius:999px;padding:9px 16px;font-size:14px}
   .person.me{border-color:var(--spring);color:var(--spring)}
@@ -267,6 +271,23 @@
         Your browser cannot play this video. <a href="demo.mp4">Download the demo</a> instead.
       </video>
     </div>
+  </div>
+</section>
+
+<section id="role">
+  <div class="wrap">
+    <p class="eyebrow">My role</p>
+    <h2>What I built.</h2>
+    <p class="lead section-lead">A five-person team built MicroLearn over eight weeks with rotating project management. My work centered on reaching and detecting ad slots, holding the page layout, the card visuals, quality checks, and two PM weeks.</p>
+    <ul class="role">
+      <li><span class="vb">reach</span><span class="tx">Worked out how to reach ad containers buried in site wrappers, and built a keyword list that gave the extension a fast, reliable way to find ad slots.</span></li>
+      <li><span class="vb">catch</span><span class="tx">Caught dynamic ads with a MutationObserver and a polling fallback, which picked up slots that loaded after the first page scan.</span></li>
+      <li><span class="vb">size</span><span class="tx">Held each ad container at its original size during replacement, so the learning card fit the slot and the page layout never shifted.</span></li>
+      <li><span class="vb">design</span><span class="tx">Designed the card backgrounds, the fade-in, and the way each lesson reads inside the slot, and fixed transparency bugs that hurt text contrast.</span></li>
+      <li><span class="vb">verify</span><span class="tx">Ran quality checks across several target sites, including pages owned by other team members, to confirm clean detection and replacement.</span></li>
+      <li><span class="vb">lead</span><span class="tx">Led the team as product manager for two of the eight build weeks, covering the block-and-inject milestone and the onboarding and content-setup milestone.</span></li>
+      <li><span class="vb">test</span><span class="tx">Wrote the test cases for ad-blocker coexistence and non-English browser language.</span></li>
+    </ul>
   </div>
 </section>
 
@@ -392,32 +413,14 @@
   </div>
 </section>
 
-<section id="role">
-  <div class="wrap">
-    <p class="eyebrow">My role</p>
-    <h2>What I built.</h2>
-    <p class="lead section-lead">A five-person team built MicroLearn over eight weeks with rotating project management. My work centered on reaching and detecting ad slots, holding the page layout, the card visuals, quality checks, and two PM weeks.</p>
-    <ul class="role">
-      <li><span class="vb">reach</span><span class="tx">Worked out how to reach ad containers buried in site wrappers, and built a keyword list that gave the extension a fast, reliable way to find ad slots.</span></li>
-      <li><span class="vb">catch</span><span class="tx">Caught dynamic ads with a MutationObserver and a polling fallback, which picked up slots that loaded after the first page scan.</span></li>
-      <li><span class="vb">size</span><span class="tx">Held each ad container at its original size during replacement, so the learning card fit the slot and the page layout never shifted.</span></li>
-      <li><span class="vb">design</span><span class="tx">Designed the card backgrounds, the fade-in, and the way each lesson reads inside the slot, and fixed transparency bugs that hurt text contrast.</span></li>
-      <li><span class="vb">verify</span><span class="tx">Ran quality checks across several target sites, including pages owned by other team members, to confirm clean detection and replacement.</span></li>
-      <li><span class="vb">lead</span><span class="tx">Led the team as product manager for two of the eight build weeks, covering the block-and-inject milestone and the onboarding and content-setup milestone.</span></li>
-      <li><span class="vb">test</span><span class="tx">Wrote the test cases for ad-blocker coexistence and non-English browser language.</span></li>
-    </ul>
-  </div>
-</section>
-
 <section id="team">
   <div class="wrap">
     <p class="eyebrow">The team</p>
-    <h2>Built by five.</h2>
+    <h2>The team.</h2>
     <div class="team">
       <span class="person me">Harman Banwait</span>
       <span class="person">Dave Jenks</span>
       <span class="person">Diyahnara Lockhart</span>
-      <span class="person">Omar Schwartz</span>
       <span class="person">Amanda Wartick</span>
     </div>
     <p class="adv">Faculty advisor: Professor Ankur Suri</p>
@@ -448,6 +451,19 @@
         </ul>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="learnings">
+  <div class="wrap">
+    <p class="eyebrow">Learnings</p>
+    <h2>What I took away.</h2>
+    <ul class="learnings">
+      <li><strong>Detection is the hard part, not the swap.</strong> Finding ad slots across very different page structures took more work than filling them. The keyword and DOM logic went through many rounds before it held up.</li>
+      <li><strong>The page has to stay still.</strong> A learning card that shifts the layout breaks trust in a second. Holding each slot at its original size mattered as much as the content inside it.</li>
+      <li><strong>Real sites break your assumptions.</strong> Testing across ten live sites, including ones I did not own, surfaced problems no single test page would ever show.</li>
+      <li><strong>AI still needs a human to set the bar.</strong> The model wrote the lessons, but I had to define what a clear, readable card looked like inside a tight ad slot, and fix what missed.</li>
+    </ul>
   </div>
 </section>
 

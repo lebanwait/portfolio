@@ -85,6 +85,17 @@
   .card h3{font-size:22px}
   .card p{color:var(--muted);font-size:14.5px;margin:0;flex:1}
   .card-cta{color:var(--text);font-size:14px;font-weight:600;margin-top:4px}
+  .card-stat{font-size:13.5px;font-weight:600;line-height:1.35;margin:0}
+  .ml-card .card-stat{color:var(--ml)}
+  .hpc-card .card-stat{color:var(--hpc)}
+  .tam-card .card-stat{color:var(--tam)}
+  .skills{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px}
+  .skill-group{border:1px solid var(--line);border-radius:14px;padding:20px;background:var(--panel)}
+  .skill-group h3{font-size:15px;margin:0 0 12px}
+  .skill-chips{display:flex;flex-wrap:wrap;gap:7px}
+  .skill-chips span{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--muted);border:1px solid var(--line-strong);border-radius:999px;padding:5px 10px}
+  @media(max-width:820px){.skills{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.skills{grid-template-columns:1fr}}
   @media(max-width:820px){.cards{grid-template-columns:1fr}}
 
   footer{padding:56px 0 80px;border-top:1px solid var(--line)}
@@ -110,7 +121,7 @@
   <div class="wrap">
     <p class="eyebrow">Portfolio</p>
     <h1>Harman Banwait</h1>
-    <p class="lead">Information Technology cum laude graduate from the University of Washington. I move between product, design, and engineering. I look for problems where a small change in a familiar tool creates real value.</p>
+    <p class="lead">Information Technology cum laude graduate from the University of Washington. I sit at the bridge between product strategy and hands-on execution, turning business problems into shipped solutions. I look for problems where a small change in a familiar tool creates real value.</p>
   </div>
 </header>
 
@@ -124,6 +135,7 @@
         <div class="card-body">
           <span class="card-tag">Product Manager & Developer</span>
           <h3>MicroLearn</h3>
+          <p class="card-stat">Concept to shipped extension in 8 weeks</p>
           <p>A Chrome extension that replaces ad slots with short learning cards while you browse.</p>
           <span class="card-cta">View case study &rarr;</span>
         </div>
@@ -133,6 +145,7 @@
         <div class="card-body">
           <span class="card-tag">Lead Product Manager</span>
           <h3>Harvest Pierce County</h3>
+          <p class="card-stat">Cut developer dependency for a 90+ project network</p>
           <p>A nonprofit gleaning site rebuilt so its own staff can run it, with no developer in the loop.</p>
           <span class="card-cta">View case study &rarr;</span>
         </div>
@@ -142,10 +155,36 @@
         <div class="card-body">
           <span class="card-tag">Product Manager Intern</span>
           <h3>The Agile Mind</h3>
+          <p class="card-stat">24 life skills mapped across every task</p>
           <p>An Agile learning platform with student and instructor portals, designed from product specs.</p>
           <span class="card-cta">View case study &rarr;</span>
         </div>
       </a>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <p class="eyebrow">Skills and tools</p>
+    <h2>What I used, by project.</h2>
+    <div class="skills">
+      <div class="skill-group">
+        <h3 style="color:var(--ml)">MicroLearn</h3>
+        <div class="skill-chips"><span>JavaScript</span><span>Chrome Manifest V3</span><span>Claude API</span><span>GitHub</span><span>Playwright</span><span>HTML/CSS</span></div>
+      </div>
+      <div class="skill-group">
+        <h3 style="color:var(--hpc)">Harvest Pierce County</h3>
+        <div class="skill-chips"><span>Microsoft Project</span><span>Excel</span><span>Figma</span><span>WordPress</span><span>Google Drive</span></div>
+      </div>
+      <div class="skill-group">
+        <h3 style="color:var(--tam)">The Agile Mind</h3>
+        <div class="skill-chips"><span>Figma</span><span>Kanban Zone</span><span>JIRA</span><span>Confluence</span></div>
+      </div>
+      <div class="skill-group">
+        <h3 style="color:var(--spring)">Across projects</h3>
+        <div class="skill-chips"><span>SQL</span><span>Microsoft Office 365</span></div>
+      </div>
     </div>
   </div>
 </section>

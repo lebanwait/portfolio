@@ -120,6 +120,25 @@
   .role li:last-child{border-bottom:1px solid var(--line)}
   .role .vb{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--spring);padding-top:3px;letter-spacing:.04em}
   .role .tx{font-size:15.5px;color:var(--text)}
+  .areas{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
+  .area{border:1px solid var(--line);border-radius:14px;padding:24px;background:var(--panel)}
+  .area .lbl{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--spring);margin:0 0 10px}
+  .area h3{font-size:18px;margin:0 0 8px}
+  .area p{font-size:14.5px;color:var(--muted);margin:0 0 14px}
+  .area .res{display:block;font-size:13px;font-weight:600;color:var(--leaf);border-top:1px solid var(--line);padding-top:13px}
+  @media(max-width:720px){.areas{grid-template-columns:1fr}}
+  .stat .sub{font-size:12px;color:var(--muted-2);margin-top:9px;line-height:1.45}
+  .score-note{margin-top:34px}
+  .score-note p{color:var(--muted);font-size:15px;max-width:72ch}
+  .checkpoints{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:22px 0}
+  .cp{border:1px solid var(--line);border-radius:14px;padding:22px;background:var(--panel)}
+  .cp .s{font-family:"Bricolage Grotesque";font-weight:800;font-size:34px;color:var(--leaf);line-height:1}
+  .cp .dt{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted-2);margin:8px 0 12px}
+  .cp p{font-size:14px;margin:0;color:var(--muted)}
+  @media(max-width:720px){.checkpoints{grid-template-columns:1fr}}
+  .learnings{list-style:none;padding:0;margin:30px 0 0;display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .learnings li{background:var(--panel);padding:22px;font-size:15.5px;color:var(--text);line-height:1.6}
+  .learnings strong{color:var(--spring);font-weight:600}
 
   .team{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
   .person{border:1px solid var(--line-strong);border-radius:999px;padding:9px 16px;font-size:14px}
@@ -195,6 +214,40 @@
   </div>
 </section>
 
+<section id="role">
+  <div class="wrap">
+    <p class="eyebrow">My role</p>
+    <h2>What I led.</h2>
+    <p class="lead section-lead">I was the lead product manager. The technical build belonged to the technical workstream. My job was to keep scope, people, and the client moving together.</p>
+    <div class="areas">
+      <div class="area">
+        <p class="lbl">Planning and delivery</p>
+        <h3>Ran the schedule end to end</h3>
+        <p>Set milestones across three phases and tracked every task for a 53-day engagement.</p>
+        <span class="res">Every task on schedule, zero scope creep</span>
+      </div>
+      <div class="area">
+        <p class="lbl">Client management</p>
+        <h3>Kept the client in the loop</h3>
+        <p>Ran weekly feedback cycles with the program manager and folded her input into the design.</p>
+        <span class="res">Three rounds of prototype iteration</span>
+      </div>
+      <div class="area">
+        <p class="lbl">Decision-making</p>
+        <h3>Picked the project on evidence</h3>
+        <p>Scored three candidate projects on seven weighted criteria with a decision matrix.</p>
+        <span class="res">Clear winner, 18.5 to 12</span>
+      </div>
+      <div class="area">
+        <p class="lbl">Team and control</p>
+        <h3>Chartered and steadied the team</h3>
+        <p>Aligned six people across different ages and fields, and tracked risk and budget each week.</p>
+        <span class="res">Survival score lifted 33.75 to 105</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="numbers">
   <div class="wrap">
     <p class="eyebrow">By the numbers</p>
@@ -202,7 +255,23 @@
     <div class="stats" style="margin-top:30px">
       <div class="stat"><div class="n">53 days</div><div class="d">from client selection to handoff, every task on schedule</div></div>
       <div class="stat"><div class="n">Zero</div><div class="d">scope creep across three project phases</div></div>
-      <div class="stat"><div class="n">33.75 &rarr; 105</div><div class="d">project survival score, baseline to final check-in</div></div>
+      <div class="stat"><div class="n">33.75 &rarr; 105</div><div class="d">project survival score, baseline to final check-in</div><div class="sub">A structured benchmark measuring scope, planning, risk, and team health.</div></div>
+    </div>
+    <div class="score-note">
+      <p>The score comes from the Software Project Survival Test, a checklist from Steve McConnell for rating project health. We ran it twice and used the gap to guide our planning.</p>
+      <div class="checkpoints">
+        <div class="cp">
+          <div class="s">33.75</div>
+          <div class="dt">Baseline, April 18</div>
+          <p>The team had formed and set a meeting cadence. Scope, milestones, and planning were still loose, so requirements and project control scored low.</p>
+        </div>
+        <div class="cp">
+          <div class="s">105</div>
+          <div class="dt">Check-in, May 1</div>
+          <p>We set scope, defined milestones, and tracked risk. We shared ownership across both workstreams, and every category improved.</p>
+        </div>
+      </div>
+      <p>The jump came from the planning work in between: a clear scope, a decision matrix, a tracked schedule, and risk review each week.</p>
     </div>
   </div>
 </section>
@@ -259,14 +328,8 @@
 <section id="outcome">
   <div class="wrap">
     <p class="eyebrow">The outcome</p>
-    <h2>Four clear pages, and a site the client owns.</h2>
-    <p class="lead section-lead">The team delivered a homepage, a Get Involved hub, an About page that never existed before, and a Meet the Team page. Most of all, the program manager can now edit it without a developer.</p>
-    <div class="delivered">
-      <span class="pill">Homepage</span>
-      <span class="pill">Get Involved</span>
-      <span class="pill">About Us</span>
-      <span class="pill">Meet the Team</span>
-    </div>
+    <h2>A site the client runs without a developer.</h2>
+    <p class="lead section-lead">The team delivered four clean pages, including an About page that never existed before. Most of all, the program manager can now edit the site without a developer.</p>
     <div class="quote">
       <p>"This new system allows me to edit pages directly, without needing a developer or trying to navigate legacy folders and HTML code. It is much easier for me to maintain."</p>
       <cite>Devon Kerr, Program Manager, Harvest Pierce County</cite>
@@ -278,17 +341,16 @@
   </div>
 </section>
 
-<section id="role">
+<section id="learnings">
   <div class="wrap">
-    <p class="eyebrow">My role</p>
-    <h2>What I led.</h2>
-    <p class="lead section-lead">I was the lead product manager. The technical build belonged to the technical workstream. My job was to keep scope, people, and the client moving together.</p>
-    <ul class="role">
-      <li><span class="vb">led</span><span class="tx">Led planning and milestone delivery for a 53-day, six-person engagement, finishing every task on schedule with zero scope creep.</span></li>
-      <li><span class="vb">ran</span><span class="tx">Ran weekly client feedback cycles across two workstreams, which shaped three rounds of prototype iteration.</span></li>
-      <li><span class="vb">structured</span><span class="tx">Structured the project choice with a decision matrix, scoring three candidates on seven weighted criteria to pick the most feasible one.</span></li>
-      <li><span class="vb">chartered</span><span class="tx">Chartered the team and set its working norms, aligning six people across ages 19 to 41 and backgrounds in military, IT, consulting, and social science.</span></li>
-      <li><span class="vb">tracked</span><span class="tx">Tracked risk, milestones, and budget each week in Microsoft Project and Excel, and lifted the team's project survival score from 33.75 to 105.</span></li>
+    <p class="eyebrow">Learnings</p>
+    <h2>What I took away.</h2>
+    <ul class="learnings">
+      <li><strong>Scope clarity kept us calm.</strong> We set the deliverables up front and held the line on them. The short timeline never turned into a scramble, and the client always knew what to expect.</li>
+      <li><strong>Client feedback every week beat a polished plan.</strong> Devon caught things in the prototype that we would have missed. Each review saved us rework and kept the design close to what she needed.</li>
+      <li><strong>The clean rebuild was the right call.</strong> Migrating years of tangled files looked faster, but it carried real risk. Starting fresh gave the client a site they can maintain on their own.</li>
+      <li><strong>Communication styles need real attention.</strong> Six people work at different speeds and in different ways. Reading that from the start, and adjusting how I checked in, kept the team steady through the crunch.</li>
+      <li><strong>I want to close loops sooner.</strong> The project ran well, but I saw where tighter follow-up on open tasks would have moved us faster. That is my focus on the next one.</li>
     </ul>
   </div>
 </section>
