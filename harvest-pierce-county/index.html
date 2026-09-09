@@ -54,6 +54,49 @@
   .btn-ghost:hover{border-color:var(--spring)}
   .btn-row{display:flex;flex-wrap:wrap;gap:12px}
 
+  /* ===== entrance: the ROOTED mark grows in, then stamps into its card =====
+     The logo is one flat image, so the word cannot be separated from the tree.
+     Wiping it in top-down gives the beats anyway: canopy, then ROOTED, then roots. */
+  .stamp-veil{position:fixed;inset:0;background:var(--ink);z-index:200;pointer-events:none;
+    animation:veilOut .7s 1.7s ease forwards}
+  @keyframes veilOut{to{opacity:0}}
+  .stamp{position:fixed;inset:0;z-index:202;display:grid;place-items:center;pointer-events:none}
+  /* the gleaning gesture: the canopy is gathered leaf by leaf.
+     Each leaf is a real cut-out of the logo flying to its own position, so
+     when they land they ARE the tree rather than dissolving into a picture. */
+  .glean{position:fixed;inset:0;z-index:201;pointer-events:none}
+  .rig-base{position:absolute;inset:0;width:100%;height:100%;opacity:0}
+  .leafwrap{position:absolute;inset:0;z-index:2}
+  .leafwrap i{position:absolute;display:block;background-repeat:no-repeat;opacity:0;will-change:transform,opacity}
+  .stamp-rig #stampLogo{opacity:0}
+  .stamp-fly{transform-origin:center center}
+  .stamp-rig{position:relative;width:min(52vh,84vw,470px);transform-origin:center center}
+  .stamp-rig img{width:100%;display:block}
+  .stamp.gone{display:none}
+  .logo-card img.pending{opacity:0}
+  .logo-card.struck{animation:struck .38s ease}
+  @keyframes struck{0%{transform:scale(1);box-shadow:none}
+    20%{transform:scale(.972);box-shadow:0 0 0 6px rgba(74,52,20,.10)}
+    60%{transform:scale(1.014);box-shadow:0 0 0 14px rgba(74,52,20,0)}
+    100%{transform:scale(1);box-shadow:none}}
+
+  .hero .eyebrow,.hero h1,.hero .lead,.hero .btn-row,.hero .load-note,.hero .facts{
+    opacity:0;transform:translateY(14px);animation:heroIn .8s cubic-bezier(.2,.7,.2,1) forwards}
+  .hero .eyebrow{animation-delay:1.8s}
+  .hero h1{animation-delay:1.9s}
+  .hero .lead{animation-delay:2.05s}
+  .hero .btn-row{animation-delay:2.2s}
+  .hero .load-note{animation-delay:2.3s}
+  .hero .facts{animation-delay:2.35s}
+  @keyframes heroIn{to{opacity:1;transform:none}}
+  nav{animation:navIn .6s 1.8s ease both}
+  @keyframes navIn{0%{opacity:0}100%{opacity:1}}
+  @media(prefers-reduced-motion:reduce){
+    .stamp,.stamp-veil,.glean{display:none}
+    .hero .eyebrow,.hero h1,.hero .lead,.hero .btn-row,.hero .load-note,.hero .facts,nav{
+      animation:none;opacity:1;transform:none}
+    .logo-card img.pending{opacity:1}
+  }
   .hero{padding:84px 0 64px}
   .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
   .hero h1{font-size:clamp(40px,6vw,68px)}
@@ -152,6 +195,8 @@
 </style>
 </head>
 <body>
+<div class="stamp-veil" aria-hidden="true"></div>
+<div class="stamp" id="stamp" aria-hidden="true"><div class="stamp-fly" id="stampFly"><div class="stamp-rig" id="stampRig"><img class="rig-base" id="rigBase" src="rooted-base.jpg" alt=""><div class="leafwrap" id="leafWrap"></div><img id="stampLogo" alt=""></div></div></div></div>
 
 <nav>
   <div class="nav-in">
@@ -388,5 +433,117 @@
   </div>
 </footer>
 
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var stamp = document.getElementById('stamp');
+  var fly = document.getElementById('stampFly');
+  var rigBase = document.getElementById('rigBase');
+  var wrap = document.getElementById('leafWrap');
+  var logo = document.getElementById('stampLogo');
+  var card = document.querySelector('.logo-card');
+  var cardImg = card ? card.querySelector('img') : null;
+  if(!stamp || !fly || !rigBase || !wrap || !logo || !card || !cardImg) return;
+  if(reduce || !fly.animate){ stamp.classList.add('gone'); return; }
+
+  logo.src = cardImg.src;
+  cardImg.classList.add('pending');
+  var done = false;
+
+  // [cellX, cellY, w, h, xFrac, yFrac] per leaf, cut from the logo itself
+  var SHEET = 'rooted-leaves.png', SW = 612, SH = 605, LW = 560, LH = 569;
+  var L = [[0,0,15,25,0.49643,0.00351],[51,0,24,29,0.575,0.00703],[102,0,29,45,0.44643,0.00879],[153,0,19,38,0.37321,0.01582],[204,0,20,44,0.62143,0.02109],[255,0,21,21,0.33214,0.02988],[306,0,22,26,0.49821,0.03515],[357,0,28,46,0.38929,0.04218],[408,0,17,32,0.66429,0.04218],[459,0,17,36,0.53571,0.05448],[510,0,34,43,0.57321,0.058],[561,0,24,34,0.70179,0.058],[0,55,16,36,0.24643,0.06327],[51,55,26,33,0.33929,0.06854],[102,55,28,53,0.26786,0.07381],[153,55,14,19,0.50714,0.07381],[204,55,27,22,0.43929,0.0826],[255,55,22,30,0.76071,0.08436],[306,55,17,27,0.6375,0.09666],[357,55,12,24,0.67143,0.10896],[408,55,16,34,0.1875,0.11072],[459,55,15,28,0.80357,0.11248],[510,55,15,16,0.4,0.11775],[561,55,20,32,0.23214,0.12302],[0,110,25,17,0.33393,0.12302],[51,110,20,14,0.44286,0.12302],[102,110,34,25,0.6875,0.12302],[153,110,23,18,0.58214,0.12654],[204,110,21,45,0.14821,0.13181],[255,110,22,34,0.55357,0.1406],[306,110,25,42,0.7625,0.1406],[357,110,20,25,0.28571,0.15114],[408,110,24,17,0.3375,0.1529],[459,110,33,32,0.8125,0.1529],[510,110,14,25,0.48929,0.1652],[561,110,11,20,0.59643,0.1652],[0,165,20,19,0.68929,0.1652],[51,165,17,16,0.11964,0.17047],[102,165,22,35,0.17679,0.17575],[153,165,22,39,0.70357,0.17575],[204,165,22,37,0.50893,0.17926],[255,165,24,25,0.22321,0.18102],[306,165,23,31,0.29643,0.18278],[357,165,13,13,0.34821,0.18805],[408,165,18,39,0.87857,0.18805],[459,165,17,12,0.55536,0.19684],[510,165,24,26,0.46786,0.19859],[561,165,38,25,0.10893,0.20211],[0,220,16,22,0.73393,0.2109],[51,220,21,17,0.80714,0.21265],[102,220,16,28,0.0875,0.22144],[153,220,20,18,0.23393,0.22847],[204,220,23,40,0.41429,0.22847],[255,220,19,21,0.68393,0.23199],[306,220,24,35,0.84286,0.23199],[357,220,15,16,0.1875,0.23374],[408,220,18,19,0.52321,0.23374],[459,220,23,23,0.46429,0.23902],[510,220,31,41,0.88571,0.23902],[561,220,11,21,0.39286,0.24253],[0,275,46,48,0.03929,0.25132],[51,275,16,24,0.19821,0.25132],[102,275,24,13,0.12679,0.25308],[153,275,14,26,0.32143,0.26714],[204,275,14,10,0.525,0.26714],[255,275,32,20,0.66607,0.26714],[306,275,15,26,0.79286,0.27065],[357,275,15,28,0.125,0.28998],[408,275,13,17,0.81071,0.29174],[459,275,21,20,0.29107,0.29701],[510,275,17,28,0.54107,0.30404],[561,275,17,16,0.76964,0.30756],[0,330,12,15,0.14464,0.3181],[51,330,15,25,0.27321,0.31986],[102,330,32,39,0.91429,0.31986],[153,330,21,11,0.16964,0.32513],[204,330,22,46,0.50357,0.32865],[255,330,31,16,0.05,0.33216],[306,330,16,29,0.8875,0.33216],[357,330,19,17,0.18571,0.33743],[408,330,17,27,0.35,0.33743],[459,330,23,35,0.72321,0.34095],[510,330,10,12,0.29107,0.34798],[561,330,13,19,0.54821,0.34798],[0,385,33,19,0.01429,0.35501],[51,385,10,11,0.2625,0.35852],[102,385,19,12,0.1125,0.3638],[153,385,19,27,0.08393,0.36555],[204,385,25,15,0.95,0.36731],[255,385,12,25,0.6875,0.37258],[306,385,24,14,0.27321,0.3884],[357,385,20,17,0.73571,0.39016],[408,385,49,24,0.01071,0.39367],[459,385,9,12,0.3125,0.39543],[510,385,47,22,0.9,0.39543],[561,385,34,37,0.03929,0.42882],[0,440,41,36,0.88393,0.43761],[51,440,29,20,0.94643,0.43937],[102,440,22,27,0.00179,0.44112],[153,440,23,27,0.17679,0.45694],[204,440,14,22,0.86429,0.46221],[255,440,16,10,0.09286,0.46397],[306,440,33,20,0.80714,0.47276],[357,440,15,29,0.2125,0.47627],[408,440,19,13,0.25,0.47803],[459,440,17,33,0.69821,0.48506],[510,440,18,15,0.075,0.48682],[561,440,16,30,0.13929,0.49033],[0,495,14,18,0.31964,0.49385],[51,495,22,18,0.79107,0.49736],[102,495,15,23,0.28036,0.50264],[153,495,16,16,0.75714,0.50264],[204,495,15,29,0.73036,0.50615],[255,495,15,29,0.10536,0.50791],[306,495,14,19,0.17143,0.50967],[357,495,32,26,0.01071,0.5167],[408,495,15,28,0.84286,0.5167],[459,495,30,26,0.90714,0.5167],[510,495,18,25,0.06607,0.52548],[561,495,17,25,0.87679,0.52548],[0,550,17,16,0.8,0.53427],[51,550,14,19,0.76429,0.53603]];
+
+  function rand(seed){
+    return function(){ seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296; };
+  }
+  var r = rand(20250412);
+
+  // Percentage background-position aligns proportional points, not pixel
+  // offsets, so the sprite has to be placed in real pixels off the rig width.
+  var rig = document.getElementById('stampRig');
+  var rigW = rig.getBoundingClientRect().width || 440;
+  var k = rigW / LW;
+
+  var nodes = [];
+  for(var i = 0; i < L.length; i++){
+    var d = L[i], w = d[2], h = d[3];
+    var el = document.createElement('i');
+    el.style.left = (d[4] * LW * k) + 'px';
+    el.style.top = (d[5] * LH * k) + 'px';
+    el.style.width = (w * k) + 'px';
+    el.style.height = (h * k) + 'px';
+    el.style.backgroundImage = 'url(' + SHEET + ')';
+    el.style.backgroundSize = (SW * k) + 'px ' + (SH * k) + 'px';
+    el.style.backgroundPosition = (-d[0] * k) + 'px ' + (-d[1] * k) + 'px';
+    wrap.appendChild(el);
+    nodes.push(el);
+  }
+
+  // every leaf drifts in from beyond the frame and stops on its own branch
+  function gather(){
+    var reach = Math.min(window.innerWidth, window.innerHeight) * 0.46;
+    for(var i = 0; i < nodes.length; i++){
+      var a = r() * Math.PI * 2;
+      var dist = reach * (0.6 + r() * 0.85);
+      var sx = Math.cos(a) * dist * 1.1;
+      var sy = Math.sin(a) * dist * 0.95;
+      var spin = -260 + r() * 520;
+      nodes[i].animate([
+        { transform: 'translate(' + sx + 'px,' + sy + 'px) rotate(' + spin + 'deg) scale(.85)', opacity: 0 },
+        { opacity: 1, offset: .16 },
+        { transform: 'translate(0,0) rotate(0deg) scale(1)', opacity: 1 }
+      ], {
+        duration: 900 + r() * 420,
+        delay: r() * 640,
+        easing: 'cubic-bezier(.22,.62,.24,1)',
+        fill: 'forwards'
+      });
+    }
+    // the bare tree is already standing, so the leaves land on real branches
+    rigBase.animate([{ opacity: 0 }, { opacity: 1 }],
+      { duration: 640, delay: 160, easing: 'ease', fill: 'forwards' });
+  }
+
+  // swap to the single flat logo once the canopy is complete: pixel-identical,
+  // so nothing visibly changes, and the travel animates one element
+  function settle(){
+    logo.style.opacity = '1';
+    wrap.style.display = 'none';
+    rigBase.style.display = 'none';
+  }
+
+  function finish(){
+    if(done) return;
+    done = true;
+    cardImg.classList.remove('pending');
+    stamp.classList.add('gone');
+    card.classList.remove('struck');
+  }
+
+  function travel(){
+    settle();
+    var from = logo.getBoundingClientRect();
+    var to = cardImg.getBoundingClientRect();
+    if(!from.width || !to.width){ finish(); return; }
+    var sc = to.width / from.width;
+    var dx = (to.left + to.width / 2) - (from.left + from.width / 2);
+    var dy = (to.top + to.height / 2) - (from.top + from.height / 2);
+    var at = function(v){ return 'translate(' + dx + 'px,' + dy + 'px) scale(' + v + ')'; };
+    var run = fly.animate([
+      { transform: 'translate(0,0) scale(1)' },
+      { transform: at(sc * 1.03), offset: .7 },
+      { transform: at(sc) }
+    ], { duration: 760, easing: 'cubic-bezier(.4,0,.25,1)', fill: 'forwards' });
+    setTimeout(function(){ card.classList.add('struck'); }, 640);
+    run.onfinish = finish;
+    setTimeout(finish, 900);
+  }
+
+  gather();
+  setTimeout(travel, 2150);
+  setTimeout(finish, 4400);
+})();
+</script>
 </body>
 </html>
