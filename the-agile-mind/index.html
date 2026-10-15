@@ -13,7 +13,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Agile Mind · Harman Banwait</title>
-<meta name="description" content="Product design case study: The Agile Mind, an Agile learning platform with student and instructor portals. Directed and designed by Harman Banwait, built with FigmaMake.">
+<meta name="description" content="Product design case study: The Agile Mind, an Agile learning platform across Instructor, Student, and Admin portals. A content health system that flags struggling students raised a pilot cohort's average grade from C to B+. Directed and designed by Harman Banwait, built with FigmaMake.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Harman Banwait">
 <meta property="og:title" content="The Agile Mind · Case study">
@@ -149,7 +149,7 @@
     <div>
       <p class="eyebrow">The Agile Mind<span class="bar">/</span>LEAF Lab</p>
       <h1>An Agile operating system for learning.</h1>
-      <p class="lead">Students plan their own work with MoSCoW boards and daily standups. Teachers see exactly where a lesson breaks down. Every task maps to a measurable life skill.</p>
+      <p class="lead">Students plan their own work with MoSCoW boards and daily standups. Teachers see exactly where a lesson breaks down. Every task maps to a measurable life skill. In a pilot cohort, the average grade rose from C to B+.</p>
       <div class="btn-row">
         <a class="btn btn-primary" href="#work">See the work</a>
         <a class="btn btn-ghost" href="#role">My role</a>
@@ -161,7 +161,9 @@
         <div class="row"><span class="k">Role</span><span class="v">Product Manager Intern</span></div>
         <div class="row"><span class="k">Org</span><span class="v">LEAF Lab</span></div>
         <div class="row"><span class="k">Built with</span><span class="v">FigmaMake</span></div>
-        <div class="row"><span class="k">Surfaces</span><span class="v">Student + Instructor</span></div>
+        <div class="row"><span class="k">Surfaces</span><span class="v">Instructor, Student, Admin</span></div>
+        <div class="row"><span class="k">Deployed on</span><span class="v">Vercel + Supabase</span></div>
+        <div class="row"><span class="k">Pilot result</span><span class="v">Average grade C to B+</span></div>
         <div class="row"><span class="k">Framework</span><span class="v">24 life skills</span></div>
       </div>
     </div>
@@ -189,10 +191,12 @@
     <h2>I owned the product, not the code.</h2>
     <p class="lead section-lead">I directed the product and designed the experience. The working prototype was generated with FigmaMake from my specifications, then refined screen by screen.</p>
     <ul class="role">
-      <li><span class="vb">directed</span><span class="tx">Directed the product across four role-based views, deciding what each role needed to see and do.</span></li>
+      <li><span class="vb">expanded</span><span class="tx">Expanded scope from a single student feature to the Instructor, Student, and Admin portals after building a workbook prototype in under a week.</span></li>
+      <li><span class="vb">validated</span><span class="tx">Validated struggle signals with LEAF's founders and educators to define what the content health system tracks.</span></li>
+      <li><span class="vb">specified</span><span class="tx">Specified the event logging and click tracking that power each Content Health alert.</span></li>
       <li><span class="vb">designed</span><span class="tx">Designed the student experience around Agile habits: a MoSCoW board, daily standup check-ins, a focus timer, confidence ratings, and weekly reflection.</span></li>
       <li><span class="vb">shaped</span><span class="tx">Shaped the instructor portal into six tabs that follow a teacher's day, then specced two systems: Content Health and a teacher MoSCoW workspace.</span></li>
-      <li><span class="vb">coordinated</span><span class="tx">Coordinated the work in Kanban Zone, planning what shipped next and keeping coaches, partner teams, and stakeholders aligned.</span></li>
+      <li><span class="vb">owned</span><span class="tx">Own the Kanban backlog across all three portals, deploying to Vercel with a Supabase backend and testing each feature before release.</span></li>
       <li><span class="vb">mapped</span><span class="tx">Mapped every task and assignment to a 24 life-skill framework, so growth stays visible to students, teachers, and parents at once.</span></li>
       <li><span class="vb">wrote</span><span class="tx">Wrote the build specifications that FigmaMake turned into the prototype, and iterated from screenshots rather than guesswork.</span></li>
     </ul>
@@ -231,13 +235,27 @@
   <div class="wrap">
     <p class="eyebrow">Signature system</p>
     <h2>Content Health escalates on its own.</h2>
-    <p class="lead section-lead">When students get stuck on the same material, the system speaks up before a teacher goes looking. It fires once at each threshold, and each level replaces the last.</p>
+    <p class="lead section-lead">When students get stuck on the same material, the system flags them to the instructor before they ask for help. It fires once at each threshold, and each level replaces the last.</p>
     <div class="esc">
       <div class="lvl watch"><div class="n">2</div><div class="t">Watch</div><p>Two students stuck. A quiet heads-up that something is worth keeping an eye on.</p></div>
       <div class="lvl urgent"><div class="n">3</div><div class="t">Urgent</div><p>Three students hitting the same wall. A content signal, not a student one.</p></div>
       <div class="lvl critical"><div class="n">5</div><div class="t">Critical</div><p>Five students stuck. This needs revision before more students hit the wall. Snooze only, no permanent dismiss.</p></div>
     </div>
     <p class="lead section-lead" style="margin-top:28px">A second system links grading to planning. When a graded assignment shows the class missing the same concept, the board generates a suggested re-teach card. When grading and Content Health point at the same concept, the suggestion jumps straight to Must Teach. The teacher stays in control of every card.</p>
+  </div>
+</section>
+
+<section id="outcome">
+  <div class="wrap">
+    <p class="eyebrow">The outcome</p>
+    <h2>Struggling students got help before they asked.</h2>
+    <p class="lead section-lead">Content Health flags struggling students to instructors before they fall behind. In a pilot cohort, that changed the grades.</p>
+    <div class="stats">
+      <div class="stat"><div class="n">C &rarr; B+</div><div class="d">pilot cohort's average grade after the content health system launched</div></div>
+      <div class="stat"><div class="n">3</div><div class="d">portals in scope, up from a single student feature</div></div>
+      <div class="stat"><div class="n">&lt;1 wk</div><div class="d">to build the workbook prototype that expanded the scope</div></div>
+      <div class="stat"><div class="n">24</div><div class="d">life skills tagged across every task</div></div>
+    </div>
   </div>
 </section>
 
